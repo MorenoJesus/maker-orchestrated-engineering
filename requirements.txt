@@ -1,0 +1,4 @@
+# Versions used to validate and render this foundation. Review updates before use.
+jsonschema==4.26.0
+referencing==0.37.0
+python-pptx==1.0.2
