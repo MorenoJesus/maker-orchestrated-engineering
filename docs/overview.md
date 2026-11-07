@@ -39,3 +39,7 @@ The five contract types are logical records. For a low-risk documentation change
 MOE combines a mission contract, delegation boundaries, autonomy policy, proof bundle, and decision record into a portable accountability model. These are proposed design choices, not a claim that existing engineering practices lack governance or that MOE invented agentic engineering.
 
 See [background and sources](references/sources.md) for related work. The framework is informed by those sources, not endorsed by their publishers.
+
+## Communication without a mandatory dependency
+
+The MOE project uses ECS to write and review technical prose. ECS is recommended, not required, for adopting organizations. Its role is clear communication; schemas, policy controls, and independent evidence retain their separate responsibilities. See [ECS integration](../implementation/ecs-integration.md).

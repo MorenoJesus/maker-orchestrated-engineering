@@ -56,3 +56,16 @@ This creates `dist/MOE_Framework_v0.3.pptx` from editable source. The source, sl
 ## Status and decisions still open
 
 The repository owner must approve a reuse license before this project claims to be open source; see [license status](LICENSE-STATUS.md). Thresholds, adoption targets, and maturity labels in this draft are proposals, not external standards. No industry endorsement or certification is claimed. See [roadmap](ROADMAP.md) and [RFC process](rfcs/README.md).
+
+## Engineering Clarity Standard
+
+MOE governs accountable work. ECS helps people and agents communicate that work precisely. Independent evidence establishes what happened.
+
+This repository uses a pinned ECS 1.0.0 skill for technical prose that contributors create or revise. ECS is recommended but optional for other organizations; it is not a core-conformance dependency. The [integration guide](implementation/ecs-integration.md) explains the boundary and the [communication profile](profiles/communication-ecs.md) maps ECS to the five contracts.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/check_ecs.py
+.\.venv\Scripts\python.exe scripts/check_clarity.py implementation/ecs-integration.md
+```
+
+These checks inspect package integrity and possible writing issues. They do not test model activation or prove application correctness. Use the [runtime evaluation cases](evaluation/ecs/README.md) to assess actual agent behavior. Imported ECS files retain their upstream MIT license; see [notices](THIRD-PARTY-NOTICES.md).

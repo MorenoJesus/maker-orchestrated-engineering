@@ -17,3 +17,7 @@ The five records in basic/ deliberately stop before technical acceptance. The ex
 Run the validator to check the records' structure and relationships. Run the unit tests to see rejected mutations of the records: stale references, missing evidence, unknown criteria, unauthorized actions and excessive budgets. Those unit tests validate this reference implementation, not the fictional catalog change.
 
 A real implementation must replace fixtures with authenticated records, enforce policy at runtime, execute applicable checks against the exact candidate, review the results, authorize delivery, and later observe the intended effect.
+
+## Communication profile
+
+This synthetic mission selects the optional ECS profile in `extensions.communication`. The metadata records a writing choice; it does not enforce runtime loading or add a core dependency. See [before-and-after rewrites](ecs/before-after.md) for all five contracts.

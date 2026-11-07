@@ -13,3 +13,7 @@ Review references, exception decision IDs and expiry, required independence, and
 
 ## Acceptance and observation
 Authorized acceptance decision reference; separate delivery authorization; business-outcome observation state. Never imply an unobserved outcome has been achieved.
+
+## Communication guidance
+
+Apply the organization's selected communication standard. ECS is this repository's default and an optional reference for adopters. Preserve exact identifiers and raw evidence. Distinguish facts, proposals, and unknowns. Use `not_run` only for known non-execution; otherwise use `unknown` when results are unavailable. See [the ECS profile](../profiles/communication-ecs.md).

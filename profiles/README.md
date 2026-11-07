@@ -20,3 +20,7 @@ These are proposed MOE mappings, not official modifications or endorsements of t
 Record `profile_id`, version, owner, scope, local lifecycle states, authority mapping, risk rules, artifact mapping, required checks, exception handling, retention, rollout controls, and observation obligations. Profiles may add requirements. Unmet core requirements must be disclosed as partial adoption.
 
 See the [profile template](../templates/organization-profile.md).
+
+## Communication profiles
+
+Communication profiles complement rather than replace lifecycle profiles. The [ECS profile](communication-ecs.md) applies clear writing and evidence-reporting rules across MOE artifacts. It is optional for adopters and does not change their lifecycle or the core-conformance requirements.
