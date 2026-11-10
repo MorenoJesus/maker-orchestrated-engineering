@@ -13,7 +13,7 @@ The license decision, reference tooling corrections and presentation polish; no 
   - a closed mission with no observation result;
   - a `not_applicable` check that cites a decision outside the record set;
   - a rejection-kind decision that does not record reject.
-- Added a continuous-integration workflow that runs the validator, the ECS integrity check, unit tests and slide build. It has not yet run on the hosting service.
+- Added a continuous-integration workflow that runs the validator, the ECS integrity check, unit tests and slide build. Its first run, on pull request 1 at commit `0d9e4e7`, passed on Python 3.10, 3.12 and 3.14 on Ubuntu and Windows: [run 42892428223](https://github.com/MorenoJesus/maker-orchestrated-engineering/actions/runs/42892428223). A passing run shows that the repository is internally consistent. It is not application verification or conformance evidence.
 - `tests/test_ecs_integration.py` now reads files as UTF-8. With the Windows default encoding, `test_deck_has_shared_skill_and_optional_adoption` stopped with a decoding error before it could assert anything.
 - Every negative test now asserts the specific error it expects, so a record rejected for an unrelated reason fails the test.
 - Reformatted the schemas, example records and slide source from single-line JSON to indented JSON. The parsed content is unchanged, apart from the slide wording below.
