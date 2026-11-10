@@ -29,3 +29,9 @@ The repository includes a neutral [agent profile template](../templates/agent-pr
 Load approved instructions and skills from versioned, integrity-checked sources. Log their revisions when material. Separate trusted instructions from retrieved content. Mediate every tool invocation, validate structured outputs, reject unauthorized changes, and stop at budgets or escalation conditions.
 
 Independent services must produce authoritative execution evidence. Agent-written summaries must preserve `failed`, `not_run`, and `unknown`. Updates to instructions, skills, policy, or model configuration need an appropriate review process.
+
+## Shared communication skill
+
+This repository applies the pinned ECS skill across requirements, planning, implementation reports, review findings, and documentation. A separate writing agent is optional. Each subagent needs relevant instructions and glossary context; inheritance is not assumed.
+
+Read [ECS integration](ecs-integration.md) for the contract mapping, runtime entry points, and validation boundaries. Other organizations may select an equivalent standard. Imported skill bytes, heuristic lint results, and runtime behavior are evaluated separately.

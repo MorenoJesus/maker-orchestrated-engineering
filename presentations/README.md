@@ -1,6 +1,6 @@
 # Presentation
 
-The 20-slide MOE overview is intended for engineering leaders, practitioners, product owners, security reviewers and potential adopters. It is vendor-neutral and includes speaker notes and source references. All graphics are editable PowerPoint shapes and text.
+The 22-slide MOE overview is intended for engineering leaders, practitioners, product owners, security reviewers and potential adopters. It is vendor-neutral and includes speaker notes and source references. All graphics are editable PowerPoint shapes and text.
 
 ## Source of truth
 
@@ -18,7 +18,7 @@ Generated files are written to `dist/`, which is not version-controlled. The pre
 
 ## Optional live demonstration
 
-The reference records can make slide 14 concrete. Everything shown is a synthetic fixture.
+The reference records can make slide 16 concrete. Everything shown is a synthetic fixture.
 
 1. Run `python scripts/validate.py`. It reports PASSED although both required checks are `not_run`: the records are consistent, and nothing claims the work succeeded.
 2. In `examples/basic/proof-bundle.json`, change `"assessment": "incomplete"` to `"ready_for_acceptance"` and run the validator again. It reports FAILED because the required checks have not all passed.
@@ -26,3 +26,7 @@ The reference records can make slide 14 concrete. Everything shown is a syntheti
 4. Optionally repeat with `"status": "authorized"` changed to `"accepted"` in `examples/basic/mission.json`. The validator asks for a ready proof bundle and an approving technical-acceptance decision.
 
 `python -m unittest discover -s tests -v` lists the other rejected cases by name. A rejection shows that the reference validator caught an inconsistent record, not that an operational control exists.
+
+## ECS integration
+
+Slides 9 and 10 explain the MOE/ECS boundary and the five contract mappings. ECS is the repository writing standard and optional for adopters. Speaker notes distinguish package checks from unexecuted runtime evaluations. Rebuild the presentation to refresh the embedded and standalone notes.

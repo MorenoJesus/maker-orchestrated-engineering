@@ -4,7 +4,7 @@
     "eyebrow": "AN ENGINEERING FRAMEWORK FOR HUMAN–AGENT COLLABORATION",
     "title": "Maker-Orchestrated\nEngineering",
     "subtitle": "Human Vision. Intelligent Execution. Verified Outcomes.",
-    "tag": "MOE 0.3.0  /  PUBLIC WORKING DRAFT",
+    "tag": "MOE 0.3.0  /  WORKING DRAFT  /  ECS INTEGRATION",
     "notes": "Introduce MOE as a proposed operating model, not an autonomous coding product or an industry certification. Its purpose is to make accountability, authorization, delegation, evidence and learning explicit when intelligent agents participate in engineering. This presentation is vendor-neutral. Organizations keep their lifecycle and tools. No productivity improvement is claimed without a pilot."
   },
   {
@@ -108,6 +108,40 @@
     ],
     "subtitle": "For a small change, one existing work item may hold all five.",
     "notes": "The contract types define semantics, not a storage architecture. The mission identifies intent, scope, acceptance and observation. Delegation narrows the assignment. Policy governs authority. The proof bundle binds evidence to the candidate. Decision records preserve accountable approval, rejection and exceptions. They can coexist in a ticket or be separate controlled records."
+  },
+  {
+    "layout": "split",
+    "eyebrow": "MOE + ENGINEERING CLARITY STANDARD",
+    "title": "MOE governs the work.\nECS makes it understandable.",
+    "left_title": "MOE defines",
+    "left": [
+      "Accountability and authority",
+      "Bounded delegation",
+      "Verification and traceability",
+      "Delivery and outcome feedback"
+    ],
+    "right_title": "ECS improves",
+    "right": [
+      "Explicit intent and conditions",
+      "Consistent technical terms",
+      "Observable acceptance criteria",
+      "Honest evidence and uncertainty"
+    ],
+    "notes": "The MOE project adopts Engineering Clarity Standard (ECS) for newly written and revised technical prose. Other organizations may use an equivalent standard: ECS is recommended, not a core-conformance requirement. A skill can improve wording but cannot authorize an action, enforce a permission, or establish software correctness. Contract schemas validate structure; trusted verification supplies evidence. The imported ECS 1.0.0 skill is pinned to commit 871dbf7030cf18be6312fb0fca00b86d440f7a98, with its MIT license preserved. It is not formal ASD-STE100 compliance. See implementation/ecs-integration.md and reference 7."
+  },
+  {
+    "layout": "contracts",
+    "eyebrow": "A SHARED SKILL ACROSS ROLES",
+    "title": "Clear language across\nall five contracts.",
+    "items": [
+      ["Mission", "Actor, outcome, scope and open questions"],
+      ["Delegation", "Exact task, constraints and stop conditions"],
+      ["Autonomy", "Permitted actions, resources and limits"],
+      ["Proof Bundle", "Actual results, missing evidence and uncertainty"],
+      ["Decision", "Authority, scope, rationale and unresolved risk"]
+    ],
+    "subtitle": "Repository default. Optional for adopters. Never a substitute for evidence.",
+    "notes": "Requirements analysts, planners, implementers, reviewers and documentation authors share the same writing guidance. A dedicated clarity agent is optional, not the only owner of understandable work. Each subagent needs the relevant skill and glossary in its own context. Preserve identifiers, schema keys, raw logs and tool results. Missing results mean unknown unless non-execution is known; only then use not_run. The package contains integrity checks, a heuristic writing checker and ten evaluation cases. Automated checks do not demonstrate that an IDE loaded the skill or that a model followed it. Runtime activation and behavioral evaluations remain not_run. Sources: the pinned ECS skill and MOE integration guide."
   },
   {
     "layout": "roles",
@@ -279,9 +313,10 @@
       ],
       ["4", "NIST SSDF project", "csrc.nist.gov/projects/ssdf"],
       ["5", "OWASP AI Agent Security Cheat Sheet", "cheatsheetseries.owasp.org"],
-      ["6", "JSON Schema Draft 2020-12", "json-schema.org/draft/2020-12"]
+      ["6", "JSON Schema Draft 2020-12", "json-schema.org/draft/2020-12"],
+      ["7", "Engineering Clarity Standard 1.0.0, pinned", "GitHub: MorenoJesus / ECS"]
     ],
     "subtitle": "Full URLs and scope notes are in docs/references/sources.md. No promised ROI or certification.",
-    "notes": "Full sources: https://agilemanifesto.org/ ; https://scrumguides.org/scrum-guide.html ; https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/ ; https://csrc.nist.gov/projects/ssdf ; https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html ; https://json-schema.org/draft/2020-12 . Reviewed 2026-11-06. MOE is an original proposal informed by related work; none of these organizations endorses it. Headline productivity statistics are deliberately not used as evidence of MOE effectiveness."
+    "notes": "Full sources: https://agilemanifesto.org/ ; https://scrumguides.org/scrum-guide.html ; https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/ ; https://csrc.nist.gov/projects/ssdf ; https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html ; https://json-schema.org/draft/2020-12 . Reviewed 2026-11-06. MOE is an original proposal informed by related work; none of these organizations endorses it. Headline productivity statistics are deliberately not used as evidence of MOE effectiveness. ECS source: https://github.com/MorenoJesus/engineering-clarity-standard/tree/871dbf7030cf18be6312fb0fca00b86d440f7a98 . ECS is optional for organizations adopting MOE. Upstream MIT terms apply to the imported ECS package, not all original MOE content. Runtime discovery sources are documented in implementation/ecs-integration.md; actual client behavior is not yet tested."
   }
 ]

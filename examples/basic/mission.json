@@ -58,5 +58,13 @@
     "failure_response": "Open a corrective mission and evaluate a safe revert."
   },
   "authorization_decision_ids": ["DECISION-001"],
-  "extensions": {}
+  "extensions": {
+    "communication": {
+      "profile_id": "moe-ecs-v1",
+      "standard": "ECS",
+      "version": "1.0.0",
+      "source_commit": "871dbf7030cf18be6312fb0fca00b86d440f7a98",
+      "glossary": "docs/glossary.md"
+    }
+  }
 }

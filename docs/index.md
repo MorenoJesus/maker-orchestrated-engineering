@@ -78,3 +78,14 @@ MOE 0.3.0 working draft. Core requirements are normative within the proposal; pr
 - [Tests](../tests/test_contracts.py)
 - [Requirements](../requirements.txt)
 - [Repository check workflow](../.github/workflows/validate.yml)
+
+## ECS integration
+
+- [Integration guide](../implementation/ecs-integration.md)
+- [Optional communication profile](../profiles/communication-ecs.md)
+- [Five contract rewrites](../examples/ecs/before-after.md)
+- [Runtime evaluation and cases](../evaluation/ecs/README.md)
+- [Pinned dependency and update policy](../third_party/ecs/README.md)
+- [Third-party notices](../THIRD-PARTY-NOTICES.md)
+- [Integrity checker](../scripts/check_ecs.py)
+- [Heuristic clarity-check wrapper](../scripts/check_clarity.py)

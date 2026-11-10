@@ -10,3 +10,12 @@
 6. **JSON Schema Draft 2020-12.** Basis for the machine-readable reference contracts. The validator explicitly applies format checking and local schema resolution. Schema validity is distinct from semantic authorization and truth. https://json-schema.org/draft/2020-12
 
 The draft does not rely on unverified headline statistics, promised ROI, current model rankings, or assumed vendor capabilities. Such claims require a dated source and an explicit explanation of their limits before inclusion.
+
+## ECS integration sources
+
+7. **Engineering Clarity Standard 1.0.0, pinned commit `871dbf7030cf18be6312fb0fca00b86d440f7a98`.** The skill and heuristic checker are imported unchanged under the upstream MIT license. MOE-specific contract mappings remain separate. https://github.com/MorenoJesus/engineering-clarity-standard/tree/871dbf7030cf18be6312fb0fca00b86d440f7a98
+8. **Agent Skills specification.** Source for skill metadata and directory conventions, not a promise of runtime activation. https://agentskills.io/specification
+9. **GitHub Copilot and Visual Studio skill documentation.** Sources for discovery locations and task-dependent use. MOE's adapters are packaged, not live-runtime tested. https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills and https://learn.microsoft.com/en-us/visualstudio/ide/copilot-agent-skills?view=visualstudio
+10. **Claude Code skills documentation.** Source for the project skill directory. A managed mirror does not by itself demonstrate activation or compliance. https://code.claude.com/docs/en/skills
+
+These integration sources were reviewed on 2026-11-06. No new effectiveness or certification claim is based on them.

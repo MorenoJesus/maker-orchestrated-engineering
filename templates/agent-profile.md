@@ -7,3 +7,7 @@ Role name and purpose; triggering condition; required approved inputs; linked sk
 Require source-attributed facts, visible assumptions, actual execution results and unambiguous uncertainty. Prohibit self-granted authority, invented approvals, suppressed failures and unreviewed policy changes. Host controls must enforce permissions.
 
 Define tests for the profile: incomplete requirements, injected instructions, unavailable tools, conflicting evidence, stale policy and budget exhaustion. Version the role and its test results.
+
+## Communication guidance
+
+Apply the organization's selected communication standard. ECS is this repository's default and an optional reference for adopters. Preserve exact identifiers and raw evidence. Distinguish facts, proposals, and unknowns. Use `not_run` only for known non-execution; otherwise use `unknown` when results are unavailable. See [the ECS profile](../profiles/communication-ecs.md).

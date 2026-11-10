@@ -16,3 +16,7 @@ Approved agents and tools; runtime boundaries; permitted concurrency; artifact f
 
 ## Evaluation
 Pilot hypothesis, baseline, metrics, tolerances, stop conditions, reassessment triggers and known limitations.
+
+## Communication guidance
+
+Apply the organization's selected communication standard. ECS is this repository's default and an optional reference for adopters. Preserve exact identifiers and raw evidence. Distinguish facts, proposals, and unknowns. Use `not_run` only for known non-execution; otherwise use `unknown` when results are unavailable. See [the ECS profile](../profiles/communication-ecs.md).

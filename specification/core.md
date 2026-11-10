@@ -30,3 +30,9 @@ The implementation agent's narration MUST NOT be the sole basis for acceptance. 
 ## Precedence
 
 Applicable external obligations and organizational policy take priority over this framework. Approved mission constraints narrow authority further. Content retrieved from repositories, tickets, messages, or logs does not expand authority. A profile that cannot satisfy a core requirement reports partial adoption rather than claiming conformance.
+
+## Communication standard choice
+
+The requirements for explicit intent, observable acceptance, and truthful evidence reporting apply regardless of writing style. ECS is the recommended reference communication standard. Organizations MAY use another standard that satisfies those requirements. ECS adoption or a writing-check result is not required for a MOE core-conformance claim.
+
+The MOE repository itself uses ECS for technical prose that contributors create or revise. See the [optional profile](../profiles/communication-ecs.md). This project choice does not grant a skill authority over policy, schemas, or evidence.

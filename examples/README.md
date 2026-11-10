@@ -19,3 +19,7 @@ Run the validator to check the records' structure and relationships. Run the uni
 To check another record set, pass `--example-dir` a directory containing the same five file names. Add `--json` for machine-readable results.
 
 A real implementation must replace fixtures with authenticated records, enforce policy at runtime, execute applicable checks against the exact candidate, review the results, authorize delivery, and later observe the intended effect.
+
+## Communication profile
+
+This synthetic mission selects the optional ECS profile in `extensions.communication`. The metadata records a writing choice; it does not enforce runtime loading or add a core dependency. See [before-and-after rewrites](ecs/before-after.md) for all five contracts.
