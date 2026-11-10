@@ -10,7 +10,7 @@ Core semantics and schema changes should use [an RFC](rfcs/README.md). Keep the 
 
 ## Validation
 
-Run `python scripts/validate.py` and `python -m unittest discover -s tests -v`. Review links and examples. Rebuild the presentation after changing slide content. Do not represent a successful reference validation as full organizational conformance.
+Run `python scripts/validate.py` and `python -m unittest discover -s tests -v`. Review links and examples. Rebuild the presentation after changing slide content. The repository workflow in `.github/workflows/validate.yml` runs the same three commands on pull requests. Do not represent a successful reference validation as full organizational conformance.
 
 For a schema change, include accepted and rejected cases and explain migration. For a security-related change, state the threat, control, and limits. For a claimed benefit, provide method, baseline, sample, and uncertainty.
 

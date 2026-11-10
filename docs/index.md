@@ -76,3 +76,4 @@ MOE 0.3.0 working draft. Core requirements are normative within the proposal; pr
 - [Validator](../scripts/validate.py)
 - [Tests](../tests/test_contracts.py)
 - [Requirements](../requirements.txt)
+- [Repository check workflow](../.github/workflows/validate.yml)

@@ -13,6 +13,19 @@ class ContractTests(unittest.TestCase):
         self.records = module.load_records(ROOT / 'examples' / 'basic')
     def rejected(self):
         self.assertTrue(module.validate_records(self.records))
+    def rejected_with(self, text):
+        errors = module.validate_records(self.records)
+        self.assertTrue(any(text in error for error in errors), errors)
+    def make_ready(self):
+        """Mark every check passed with synthetic artifacts. Not genuine evidence."""
+        b = self.records['proof-bundle']; b['assessment'] = 'ready_for_acceptance'
+        for c in b['checks']:
+            c.update(outcome='passed', run_id='synthetic-run', observed_at='2026-11-06T18:00:00Z', artifact_uri='https://example.invalid/artifacts/test.json', artifact_digest='sha256:' + 'c' * 64, reason='Synthetic positive fixture, not genuine evidence.')
+        return b
+    def decide(self, kind, role, actor_id):
+        """Replace the single decision with a synthetic approving acceptance or release decision."""
+        b = self.records['proof-bundle']
+        self.records['decision-record'].update(kind=kind, authority_role=role, actor={'id': actor_id, 'kind': 'human'}, decision='approve', candidate_id=b['candidate']['id'], proof_bundle={'id': b['id'], 'revision': b['revision']}, rationale='Synthetic decision for a validator test; this is not a real approval.')
     def test_reference_fixture_is_consistent_but_incomplete(self):
         self.assertEqual([], module.validate_records(self.records))
         self.assertEqual('incomplete', self.records['proof-bundle']['assessment'])
@@ -63,11 +76,61 @@ class ContractTests(unittest.TestCase):
     def test_unapproved_authorization(self):
         self.records['decision-record']['decision'] = 'defer'; self.rejected()
     def test_ready_fixture_with_artifacts_validates_structure_only(self):
-        b = self.records['proof-bundle']; b['assessment'] = 'ready_for_acceptance'
-        for c in b['checks']:
-            c.update(outcome='passed', run_id='synthetic-run', observed_at='2026-11-06T18:00:00Z', artifact_uri='https://example.invalid/artifacts/test.json', artifact_digest='sha256:' + 'c' * 64, reason='Synthetic positive fixture, not genuine evidence.')
+        b = self.make_ready()
         self.assertEqual([], module.validate_records(self.records))
         self.assertEqual('fixture', b['record_mode'])
+
+    # Formats: a missing checker must fail loudly instead of skipping the check.
+    def test_invalid_policy_expiry(self):
+        self.records['autonomy']['expires_at'] = 'never'; self.rejected_with("is not a 'date-time'")
+    def test_invalid_artifact_uri(self):
+        self.make_ready()['checks'][0]['artifact_uri'] = 'not a uri at all'; self.rejected_with("is not a 'uri'")
+    def test_unsupported_format_fails_closed(self):
+        with self.assertRaises(module.MissingFormatSupport):
+            module.format_checker({'example': {'type': 'string', 'format': 'no-such-format'}})
+
+    # Later mission states need evidence and the decision that justifies the state.
+    def test_later_states_without_evidence(self):
+        for status in ('accepted', 'delivered', 'observing', 'closed'):
+            with self.subTest(status=status):
+                self.records['mission']['status'] = status; self.rejected_with('requires a proof bundle that is ready for acceptance')
+    def test_accepted_needs_acceptance_decision(self):
+        self.make_ready(); self.records['mission']['status'] = 'accepted'
+        self.rejected_with('requires an approving technical_acceptance decision')
+    def test_delivered_needs_release_decision(self):
+        self.make_ready(); self.decide('technical_acceptance', 'accept', 'person:reviewer-example')
+        self.records['mission']['status'] = 'delivered'; self.rejected_with('requires an approving release decision')
+    def test_accepted_fixture_validates_structure_only(self):
+        self.make_ready(); self.decide('technical_acceptance', 'accept', 'person:reviewer-example')
+        self.records['mission']['status'] = 'accepted'
+        self.assertEqual([], module.validate_records(self.records))
+    def test_delivered_fixture_validates_structure_only(self):
+        self.make_ready(); self.decide('release', 'release', 'person:release-example')
+        self.records['mission']['status'] = 'delivered'
+        self.assertEqual([], module.validate_records(self.records))
+    def test_outcome_observed_before_delivery(self):
+        self.records['proof-bundle']['outcome_observation'] = 'achieved'; self.rejected_with('outcome cannot be observed before delivery')
+    def test_closed_without_observation_result(self):
+        self.make_ready(); self.decide('release', 'release', 'person:release-example')
+        self.records['mission']['status'] = 'closed'; self.rejected_with('closure requires a recorded observation result')
+    def test_closed_fixture_keeps_unknown_outcome(self):
+        b = self.make_ready(); self.decide('release', 'release', 'person:release-example')
+        self.records['mission']['status'] = 'closed'; b['outcome_observation'] = 'unknown'
+        self.assertEqual([], module.validate_records(self.records))
+
+    # References and decision coherence.
+    def test_not_applicable_unknown_decision(self):
+        self.records['proof-bundle']['checks'][0].update(outcome='not_applicable', decision_id='DECISION-404')
+        self.rejected_with('not_applicable check must cite an approving decision')
+    def test_not_applicable_cites_known_decision(self):
+        self.records['proof-bundle']['checks'][0].update(outcome='not_applicable', decision_id='DECISION-001')
+        self.assertEqual([], module.validate_records(self.records))
+    def test_rejection_kind_cannot_approve(self):
+        self.records['mission']['status'] = 'draft'; self.records['decision-record']['kind'] = 'rejection'
+        self.rejected_with('rejection kind must record a reject decision')
+    def test_rejection_kind_records_reject(self):
+        self.records['mission']['status'] = 'draft'; self.records['decision-record'].update(kind='rejection', decision='reject')
+        self.assertEqual([], module.validate_records(self.records))
 
 if __name__ == '__main__':
     unittest.main()

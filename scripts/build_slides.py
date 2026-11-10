@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Build the editable MOE presentation from versioned JSON content."""
 from __future__ import annotations
 import json

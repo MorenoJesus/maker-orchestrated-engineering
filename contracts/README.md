@@ -24,6 +24,8 @@ A ready_for_acceptance label requires all required reference checks to pass; thi
 
 Acceptance and release decisions need a candidate and proof-bundle reference. Exception decisions need the affected control, scope, expiry and compensating measures. Required checks must not be silently removed or reclassified as optional.
 
+A mission in accepted, delivered, observing or closed status requires a proof bundle labelled ready_for_acceptance. Because this reference profile validates one decision, that decision must be the approval that justifies the state: technical acceptance for accepted, release for delivered, observing and closed. An achieved or not_achieved outcome observation cannot precede delivery. A closed mission cannot leave the observation as not_yet_observed. A not_applicable check must cite an approving decision present in the validated record set; a decision the validator cannot see does not count. A rejection-kind decision must record reject.
+
 ## Evidence status
 
 passed and failed require a producer, run identifier, timestamp, artifact URI and digest. not_run means execution is known not to have occurred. unknown means status is not established. not_applicable requires a reason and a decision reference. No state means universally safe. An artifact digest establishes byte identity, not producer authenticity.
@@ -31,5 +33,7 @@ passed and failed require a producer, run identifier, timestamp, artifact URI an
 ## Validator limits
 
 The reference validator checks structure and selected cross-record invariants for one mission, policy, delegation, proof bundle and decision. It is not a multi-mission scheduler, policy engine, cryptographic verifier, production release gate, or conformance certifier. It does not authenticate identities, fetch artifacts, inspect source ACLs, detect all policy conflicts, evaluate current policy expiry or perform application tests. Operational integrations must do those things as appropriate.
+
+Format keywords such as date-time and uri are enforced only when the corresponding checker packages in requirements.txt are installed. The validator stops with an error when a format used by the schemas has no checker, rather than silently skipping it.
 
 Fixture records are explicitly synthetic and must never be promoted into operational acceptance. A fixture can pass schema and consistency checks while its required application checks remain not_run.

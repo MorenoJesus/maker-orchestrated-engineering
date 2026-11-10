@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Validate MOE reference records. This is not a release or conformance gate."""
 from __future__ import annotations
 import argparse
@@ -11,6 +10,29 @@ from referencing import Registry, Resource
 
 ROOT = Path(__file__).resolve().parents[1]
 KINDS = ('mission', 'autonomy', 'delegation', 'proof-bundle', 'decision-record')
+PRE_DELIVERY = {'draft', 'authorized', 'executing', 'awaiting_acceptance', 'accepted'}
+# In this single-decision reference profile, the decision supplied must justify the mission's state.
+STATE_DECISION = {'accepted': 'technical_acceptance', 'delivered': 'release', 'observing': 'release', 'closed': 'release'}
+
+class MissingFormatSupport(RuntimeError):
+    """A format the schemas rely on has no checker installed and would be silently skipped."""
+
+def used_formats(node: Any) -> set[str]:
+    """Collect every "format" keyword value in a schema."""
+    if isinstance(node, dict):
+        found = {node['format']} if isinstance(node.get('format'), str) else set()
+        return found.union(*(used_formats(value) for value in node.values()))
+    if isinstance(node, list):
+        return set().union(*(used_formats(value) for value in node))
+    return set()
+
+def format_checker(schemas: dict[str, Any]) -> FormatChecker:
+    """Return a checker covering every format the schemas use; fail closed if one is missing."""
+    checker = FormatChecker()
+    missing = sorted(used_formats(schemas) - set(checker.checkers))
+    if missing:
+        raise MissingFormatSupport(f'no checker installed for format(s): {", ".join(missing)}; install requirements.txt')
+    return checker
 
 def load_records(directory: Path) -> dict[str, Any]:
     return {kind: json.loads((directory / f'{kind}.json').read_text(encoding='utf-8')) for kind in KINDS}
@@ -29,11 +51,12 @@ def validate_records(records: dict[str, Any]) -> list[str]:
     """Return structural and selected consistency errors. No remote data is trusted."""
     errors: list[str] = []
     schemas, registry = schema_registry()
+    formats = format_checker(schemas)
     for kind in KINDS:
         if kind not in records:
             errors.append(f'{kind}: missing record')
             continue
-        validator = Draft202012Validator(schemas[kind], registry=registry, format_checker=FormatChecker())
+        validator = Draft202012Validator(schemas[kind], registry=registry, format_checker=formats)
         for error in sorted(validator.iter_errors(records[kind]), key=lambda e: str(list(e.path))):
             errors.append(f'{kind}:{"/".join(str(p) for p in error.path)}: {error.message}')
     if errors:
@@ -59,9 +82,20 @@ def validate_records(records: dict[str, Any]) -> list[str]:
         errors.append('decision-record: kind does not match authority role')
     if a['actor']['kind'] == 'agent':
         errors.append('decision-record: agent cannot grant authority in this reference profile')
+    if a['kind'] == 'rejection' and a['decision'] != 'reject':
+        errors.append('decision-record: rejection kind must record a reject decision')
     if m['status'] in {'authorized', 'executing', 'awaiting_acceptance'}:
         if not (a['kind'] == 'mission_authorization' and a['decision'] == 'approve' and a['id'] in m['authorization_decision_ids']):
             errors.append('mission: reference profile requires matching approving authorization')
+    if m['status'] in STATE_DECISION:
+        if b['assessment'] != 'ready_for_acceptance':
+            errors.append(f'mission: status {m["status"]} requires a proof bundle that is ready for acceptance')
+        if not (a['kind'] == STATE_DECISION[m['status']] and a['decision'] == 'approve'):
+            errors.append(f'mission: reference profile requires an approving {STATE_DECISION[m["status"]]} decision for status {m["status"]}')
+    if b['outcome_observation'] in {'achieved', 'not_achieved'} and m['status'] in PRE_DELIVERY:
+        errors.append('proof-bundle: outcome cannot be observed before delivery')
+    if m['status'] == 'closed' and b['outcome_observation'] == 'not_yet_observed':
+        errors.append('mission: closure requires a recorded observation result')
     if a['kind'] in {'technical_acceptance', 'release'}:
         if a['candidate_id'] != b['candidate']['id'] or a['proof_bundle'] != {'id': b['id'], 'revision': b['revision']}:
             errors.append('decision-record: stale or wrong candidate/proof bundle')
@@ -105,6 +139,8 @@ def validate_records(records: dict[str, Any]) -> list[str]:
             errors.append('proof-bundle: required check marked optional')
         if check['required'] and check['producer']['kind'] == 'agent':
             errors.append('proof-bundle: required check cannot rely on agent self-report')
+        if check['outcome'] == 'not_applicable' and not (check['decision_id'] == a['id'] and a['decision'] == 'approve'):
+            errors.append('proof-bundle: not_applicable check must cite an approving decision in this record set')
         if b['assessment'] == 'ready_for_acceptance' and (check['required'] or check['id'] in required) and check['outcome'] != 'passed':
             errors.append('proof-bundle: required checks have not all passed; exceptions need a separate evaluator')
     if set(criteria) - mapped:
@@ -120,7 +156,7 @@ def main() -> int:
         records = load_records(args.example_dir)
         errors = validate_records(records)
         result = {'validation': 'failed' if errors else 'passed', 'scope': 'schema_and_selected_consistency_only', 'record_mode': records['mission'].get('record_mode', 'unknown'), 'application_tests': 'not_run', 'operational_authorization': 'not_evaluated', 'errors': errors}
-    except (OSError, ValueError, KeyError) as exc:
+    except (OSError, ValueError, KeyError, MissingFormatSupport) as exc:
         result = {'validation': 'failed', 'scope': 'schema_and_selected_consistency_only', 'errors': [str(exc)]}
         errors = result['errors']
     if args.json:
