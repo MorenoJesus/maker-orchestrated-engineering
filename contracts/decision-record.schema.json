@@ -1,1 +1,79 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://example.invalid/moe/0.3.0/decision-record.schema.json","title":"Decision Record","type":"object","properties":{"schema_version":{"const":"0.3.0"},"id":{"$ref":"common.schema.json#/$defs/id"},"revision":{"type":"integer","minimum":1},"record_mode":{"enum":["fixture","operational"]},"kind":{"enum":["mission_authorization","technical_acceptance","release","exception","observation","rejection"]},"mission":{"$ref":"common.schema.json#/$defs/record_ref"},"policy":{"$ref":"common.schema.json#/$defs/record_ref"},"actor":{"$ref":"common.schema.json#/$defs/actor"},"authority_role":{"enum":["authorize","accept","release","exception"]},"decision":{"enum":["approve","reject","defer"]},"rationale":{"type":"string","minLength":1},"recorded_at":{"$ref":"common.schema.json#/$defs/timestamp"},"candidate_id":{"$ref":"common.schema.json#/$defs/id"},"proof_bundle":{"$ref":"common.schema.json#/$defs/record_ref"},"exception":{"type":"object","properties":{"control_id":{"type":"string","minLength":1},"scope":{"type":"string","minLength":1},"expires_at":{"$ref":"common.schema.json#/$defs/timestamp"},"compensating_measures":{"type":"array","items":{"type":"string","minLength":1},"minItems":1}},"required":["control_id","scope","expires_at","compensating_measures"],"additionalProperties":false},"extensions":{"type":"object"}},"required":["schema_version","id","revision","record_mode","kind","mission","policy","actor","authority_role","decision","rationale","recorded_at","extensions"],"additionalProperties":false,"allOf":[{"if":{"properties":{"kind":{"enum":["technical_acceptance","release"]}}},"then":{"required":["candidate_id","proof_bundle"]}},{"if":{"properties":{"kind":{"const":"exception"}}},"then":{"required":["exception"]}}]}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/moe/0.3.0/decision-record.schema.json",
+  "title": "Decision Record",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "0.3.0"},
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "record_mode": {"enum": ["fixture", "operational"]},
+    "kind": {
+      "enum": [
+        "mission_authorization",
+        "technical_acceptance",
+        "release",
+        "exception",
+        "observation",
+        "rejection"
+      ]
+    },
+    "mission": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "policy": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "actor": {"$ref": "common.schema.json#/$defs/actor"},
+    "authority_role": {"enum": ["authorize", "accept", "release", "exception"]},
+    "decision": {"enum": ["approve", "reject", "defer"]},
+    "rationale": {"type": "string", "minLength": 1},
+    "recorded_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/id"},
+    "proof_bundle": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "exception": {
+      "type": "object",
+      "properties": {
+        "control_id": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "expires_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+        "compensating_measures": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1
+        }
+      },
+      "required": ["control_id", "scope", "expires_at", "compensating_measures"],
+      "additionalProperties": false
+    },
+    "extensions": {"type": "object"}
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "record_mode",
+    "kind",
+    "mission",
+    "policy",
+    "actor",
+    "authority_role",
+    "decision",
+    "rationale",
+    "recorded_at",
+    "extensions"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {"enum": ["technical_acceptance", "release"]}
+        }
+      },
+      "then": {"required": ["candidate_id", "proof_bundle"]}
+    },
+    {
+      "if": {
+        "properties": {"kind": {"const": "exception"}}
+      },
+      "then": {"required": ["exception"]}
+    }
+  ]
+}

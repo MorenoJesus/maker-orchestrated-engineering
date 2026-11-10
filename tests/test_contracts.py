@@ -11,9 +11,8 @@ spec.loader.exec_module(module)
 class ContractTests(unittest.TestCase):
     def setUp(self):
         self.records = module.load_records(ROOT / 'examples' / 'basic')
-    def rejected(self):
-        self.assertTrue(module.validate_records(self.records))
     def rejected_with(self, text):
+        """Require the specific error, so a record rejected for an unrelated reason fails the test."""
         errors = module.validate_records(self.records)
         self.assertTrue(any(text in error for error in errors), errors)
     def make_ready(self):
@@ -30,51 +29,51 @@ class ContractTests(unittest.TestCase):
         self.assertEqual([], module.validate_records(self.records))
         self.assertEqual('incomplete', self.records['proof-bundle']['assessment'])
     def test_missing_maker(self):
-        del self.records['mission']['maker']; self.rejected()
+        del self.records['mission']['maker']; self.rejected_with("'maker' is a required property")
     def test_unknown_field(self):
-        self.records['mission']['silent_override'] = True; self.rejected()
+        self.records['mission']['silent_override'] = True; self.rejected_with("'silent_override' was unexpected")
     def test_wrong_version(self):
-        self.records['mission']['schema_version'] = '9.0.0'; self.rejected()
+        self.records['mission']['schema_version'] = '9.0.0'; self.rejected_with("'0.3.0' was expected")
     def test_stale_mission(self):
-        self.records['delegation']['mission']['revision'] = 2; self.rejected()
+        self.records['delegation']['mission']['revision'] = 2; self.rejected_with('delegation: stale or wrong mission reference')
     def test_stale_policy(self):
-        self.records['proof-bundle']['policy']['revision'] = 2; self.rejected()
+        self.records['proof-bundle']['policy']['revision'] = 2; self.rejected_with('proof-bundle: stale or wrong policy reference')
     def test_unauthorized_action(self):
-        self.records['delegation']['allowed_actions'].append('production.write'); self.rejected()
+        self.records['delegation']['allowed_actions'].append('production.write'); self.rejected_with('delegation: unauthorized action')
     def test_conflicting_policy(self):
-        self.records['autonomy']['denied_actions'].append('checks.run'); self.rejected()
+        self.records['autonomy']['denied_actions'].append('checks.run'); self.rejected_with('autonomy: allowed and denied actions conflict')
     def test_excessive_budget(self):
-        self.records['delegation']['budget']['max_tool_calls'] = 300; self.rejected()
+        self.records['delegation']['budget']['max_tool_calls'] = 300; self.rejected_with('delegation: budget exceeds policy for max_tool_calls')
     def test_unknown_criterion(self):
-        self.records['proof-bundle']['checks'][0]['criterion_ids'] = ['AC-99']; self.rejected()
+        self.records['proof-bundle']['checks'][0]['criterion_ids'] = ['AC-99']; self.rejected_with('proof-bundle: unknown acceptance criterion')
     def test_duplicate_check(self):
-        self.records['proof-bundle']['checks'].append(copy.deepcopy(self.records['proof-bundle']['checks'][0])); self.rejected()
+        self.records['proof-bundle']['checks'].append(copy.deepcopy(self.records['proof-bundle']['checks'][0])); self.rejected_with('proof-bundle: duplicate check ID')
     def test_missing_required_check(self):
-        self.records['proof-bundle']['checks'].pop(); self.rejected()
+        self.records['proof-bundle']['checks'].pop(); self.rejected_with('proof-bundle: missing required check')
     def test_required_marked_optional(self):
-        self.records['proof-bundle']['checks'][0]['required'] = False; self.rejected()
+        self.records['proof-bundle']['checks'][0]['required'] = False; self.rejected_with('proof-bundle: required check marked optional')
     def test_false_ready_label(self):
-        self.records['proof-bundle']['assessment'] = 'ready_for_acceptance'; self.rejected()
+        self.records['proof-bundle']['assessment'] = 'ready_for_acceptance'; self.rejected_with('required checks have not all passed')
     def test_pass_without_artifacts(self):
-        self.records['proof-bundle']['checks'][0]['outcome'] = 'passed'; self.rejected()
+        self.records['proof-bundle']['checks'][0]['outcome'] = 'passed'; self.rejected_with("'artifact_digest' is a required property")
     def test_invalid_timestamp(self):
-        self.records['decision-record']['recorded_at'] = 'yesterday'; self.rejected()
+        self.records['decision-record']['recorded_at'] = 'yesterday'; self.rejected_with("is not a 'date-time'")
     def test_mismatched_authority(self):
-        self.records['decision-record']['actor']['id'] = 'person:unknown'; self.rejected()
+        self.records['decision-record']['actor']['id'] = 'person:unknown'; self.rejected_with('decision-record: actor does not match assigned authority')
     def test_agent_cannot_be_maker(self):
-        self.records['mission']['maker']['kind'] = 'agent'; self.rejected()
+        self.records['mission']['maker']['kind'] = 'agent'; self.rejected_with('mission: maker must be human')
     def test_resource_escape(self):
-        self.records['delegation']['resources'] = ['repo:other/private']; self.rejected()
+        self.records['delegation']['resources'] = ['repo:other/private']; self.rejected_with('delegation: resource exceeds mission scope')
     def test_mixed_record_modes(self):
-        self.records['proof-bundle']['record_mode'] = 'operational'; self.rejected()
+        self.records['proof-bundle']['record_mode'] = 'operational'; self.rejected_with('fixture and operational modes cannot be mixed')
     def test_invalid_digest(self):
-        self.records['proof-bundle']['candidate']['artifact_digest'] = 'sha256:guess'; self.rejected()
+        self.records['proof-bundle']['candidate']['artifact_digest'] = 'sha256:guess'; self.rejected_with("does not match '^sha256:")
     def test_unmapped_criterion(self):
-        self.records['proof-bundle']['checks'][0]['criterion_ids'] = []; self.rejected()
+        self.records['proof-bundle']['checks'][0]['criterion_ids'] = []; self.rejected_with('proof-bundle: unmapped acceptance criterion')
     def test_agent_self_report(self):
-        self.records['proof-bundle']['checks'][0]['producer']['kind'] = 'agent'; self.rejected()
+        self.records['proof-bundle']['checks'][0]['producer']['kind'] = 'agent'; self.rejected_with('required check cannot rely on agent self-report')
     def test_unapproved_authorization(self):
-        self.records['decision-record']['decision'] = 'defer'; self.rejected()
+        self.records['decision-record']['decision'] = 'defer'; self.rejected_with('requires matching approving authorization')
     def test_ready_fixture_with_artifacts_validates_structure_only(self):
         b = self.make_ready()
         self.assertEqual([], module.validate_records(self.records))

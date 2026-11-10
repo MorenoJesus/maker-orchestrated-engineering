@@ -11,7 +11,9 @@ from pptx.enum.text import MSO_ANCHOR
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'dist'
 C = {'bg':'101B2D','panel':'192A40','ink':'F5F7FB','muted':'ACBBD0','accent':'35DFC1','line':'34465F','soft':'23384F'}
-FONT = 'Inter'
+# Calibri ships with common office suites, or is replaced there by a metric-compatible font, so the
+# layout does not depend on a typeface the presenting machine may lack.
+FONT = 'Calibri'
 
 def color(name):
     return RGBColor.from_string(C.get(name, name))
@@ -19,17 +21,18 @@ def color(name):
 def box(slide, x,y,w,h, fill='panel', line=None, radius=False):
     shape=slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE if radius else MSO_SHAPE.RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
     shape.fill.solid(); shape.fill.fore_color.rgb=color(fill)
-    shape.line.fill.background() if line is None else None
-    if line: shape.line.color.rgb=color(line)
+    if line is None: shape.line.fill.background()
+    else: shape.line.color.rgb=color(line)
     if radius:
         try: shape.adjustments[0]=0.12
         except (IndexError, AttributeError): pass
     return shape
 
-def text(slide, value, x,y,w,h, size=20, bold=False, ink='ink', align=None):
+def text(slide, value, x,y,w,h, size=20, bold=False, ink='ink', align=None, anchor=None):
     shape=slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     tf=shape.text_frame; tf.clear(); tf.word_wrap=True
     tf.margin_left=tf.margin_right=tf.margin_top=tf.margin_bottom=0
+    if anchor is not None:tf.vertical_anchor=anchor
     for i,line in enumerate(value.split('\n')):
         p=tf.paragraphs[0] if i==0 else tf.add_paragraph()
         p.text=line; p.font.name=FONT; p.font.size=Pt(size); p.font.bold=bold; p.font.color.rgb=color(ink)
@@ -42,11 +45,9 @@ def rule(slide,x1,y1,x2,y2,ink='line',width=1):
     sh.line.color.rgb=color(ink);sh.line.width=Pt(width)
     return sh
 
-def arrow(slide,x,y,w=.25,h=.22):
-    return box_arrow(slide,x,y,w,h)
-def box_arrow(slide,x,y,w,h):
+def arrow(slide,x,y,w=.25,h=.22,rotation=0):
     sh=slide.shapes.add_shape(MSO_SHAPE.CHEVRON,Inches(x),Inches(y),Inches(w),Inches(h))
-    sh.fill.solid();sh.fill.fore_color.rgb=color('accent');sh.line.fill.background();return sh
+    sh.fill.solid();sh.fill.fore_color.rgb=color('accent');sh.line.fill.background();sh.rotation=rotation;return sh
 
 def header(slide,s,n):
     slide.background.fill.solid();slide.background.fill.fore_color.rgb=color('bg')
@@ -109,8 +110,9 @@ def build():
                 text(sl,title,x+.84,y+.16,2.75,.42,22,True)
                 text(sl,body,x+.22,y+.73,3.4,.4,16,False,'muted')
                 if i in (0,1):arrow(sl,x+3.88,y+.48,.15,.22)
-                if i in (3,4):
-                    sh=arrow(sl,x-.22,y+.48,.15,.22);sh.rotation=180
+                if i in (3,4):arrow(sl,x-.22,y+.48,.15,.22,180)
+            # Close the loop: Orchestrate down to Prove, and Learn back up to Define.
+            arrow(sl,10.685,4.1,.15,.22,90);arrow(sl,2.485,4.1,.15,.22,270)
             text(sl,s['subtitle'],.7,6.25,12,.48,18,False,'muted')
         elif kind=='contracts':
             for i,(title,body) in enumerate(s['items']):
@@ -129,7 +131,7 @@ def build():
             text(sl,s['subtitle'],.7,2.55,12,.8,20,False,'muted')
             for i,title in enumerate(s['nodes']):
                 x=.65+i*3.07;box(sl,x,3.75,2.81,1.3,radius=True)
-                text(sl,title,x+.23,4.1,2.35,.75,21,True)
+                text(sl,title,x+.23,3.75,2.35,1.3,21,True,anchor=MSO_ANCHOR.MIDDLE)
                 if i<3:arrow(sl,x+2.85,4.27,.17,.25)
             box(sl,.65,5.7,12.03,.69,'soft')
             text(sl,s['bottom'],.87,5.91,11.6,.38,16,False,'muted')

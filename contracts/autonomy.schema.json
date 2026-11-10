@@ -1,1 +1,80 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://example.invalid/moe/0.3.0/autonomy.schema.json","title":"Autonomy","type":"object","properties":{"schema_version":{"const":"0.3.0"},"id":{"$ref":"common.schema.json#/$defs/id"},"revision":{"type":"integer","minimum":1},"record_mode":{"enum":["fixture","operational"]},"owner":{"type":"string","minLength":1},"scope":{"type":"object","properties":{"resources":{"type":"array","items":{"type":"string","minLength":1},"minItems":1,"uniqueItems":true},"environments":{"type":"array","items":{"type":"string","minLength":1},"minItems":1,"uniqueItems":true},"data_classifications":{"type":"array","items":{"type":"string","minLength":1},"minItems":1,"uniqueItems":true}},"required":["resources","environments","data_classifications"],"additionalProperties":false},"allowed_actions":{"type":"array","items":{"type":"string","minLength":1},"minItems":1,"uniqueItems":true},"denied_actions":{"type":"array","items":{"type":"string","minLength":1},"minItems":0,"uniqueItems":true},"approval_required_actions":{"type":"array","items":{"type":"string","minLength":1},"minItems":0,"uniqueItems":true},"budget":{"$ref":"common.schema.json#/$defs/budget"},"expires_at":{"$ref":"common.schema.json#/$defs/timestamp"},"enforcement_point":{"type":"string","minLength":1},"revocation_method":{"type":"string","minLength":1},"escalation_owner":{"type":"string","minLength":1},"extensions":{"type":"object"}},"required":["schema_version","id","revision","record_mode","owner","scope","allowed_actions","denied_actions","approval_required_actions","budget","expires_at","enforcement_point","revocation_method","escalation_owner","extensions"],"additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/moe/0.3.0/autonomy.schema.json",
+  "title": "Autonomy",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "0.3.0"},
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "record_mode": {"enum": ["fixture", "operational"]},
+    "owner": {"type": "string", "minLength": 1},
+    "scope": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "environments": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "data_classifications": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": ["resources", "environments", "data_classifications"],
+      "additionalProperties": false
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "denied_actions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "approval_required_actions": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "budget": {"$ref": "common.schema.json#/$defs/budget"},
+    "expires_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "enforcement_point": {"type": "string", "minLength": 1},
+    "revocation_method": {"type": "string", "minLength": 1},
+    "escalation_owner": {"type": "string", "minLength": 1},
+    "extensions": {"type": "object"}
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "record_mode",
+    "owner",
+    "scope",
+    "allowed_actions",
+    "denied_actions",
+    "approval_required_actions",
+    "budget",
+    "expires_at",
+    "enforcement_point",
+    "revocation_method",
+    "escalation_owner",
+    "extensions"
+  ],
+  "additionalProperties": false
+}

@@ -1,1 +1,15 @@
-{"schema_version":"0.3.0","id":"DECISION-001","revision":1,"record_mode":"fixture","kind":"mission_authorization","mission":{"id":"MISSION-001","revision":1},"policy":{"id":"POLICY-001","revision":1},"actor":{"id":"person:owner-example","kind":"human"},"authority_role":"authorize","decision":"approve","rationale":"Synthetic authorization for the example sandbox scope only; this is not a real approval.","recorded_at":"2026-11-06T17:00:00Z","extensions":{}}
+{
+  "schema_version": "0.3.0",
+  "id": "DECISION-001",
+  "revision": 1,
+  "record_mode": "fixture",
+  "kind": "mission_authorization",
+  "mission": {"id": "MISSION-001", "revision": 1},
+  "policy": {"id": "POLICY-001", "revision": 1},
+  "actor": {"id": "person:owner-example", "kind": "human"},
+  "authority_role": "authorize",
+  "decision": "approve",
+  "rationale": "Synthetic authorization for the example sandbox scope only; this is not a real approval.",
+  "recorded_at": "2026-11-06T17:00:00Z",
+  "extensions": {}
+}

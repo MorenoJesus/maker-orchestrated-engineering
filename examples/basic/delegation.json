@@ -1,1 +1,29 @@
-{"schema_version":"0.3.0","id":"DELEGATION-001","revision":1,"record_mode":"fixture","mission":{"id":"MISSION-001","revision":1},"policy":{"id":"POLICY-001","revision":1},"agent":{"id":"agent:implementer-example","kind":"agent"},"objective":"Prepare a bounded candidate and focused tests for AC-01 and AC-02.","resources":["repo:example/catalog"],"environment":"sandbox","allowed_actions":["source.read","workspace.patch","checks.run"],"expected_outputs":["Reviewable patch","Test changes","Execution references or an explicit not_run result"],"acceptance_criterion_ids":["AC-01","AC-02"],"dependencies":[],"budget":{"max_tool_calls":20,"max_retries":1,"max_runtime_seconds":600},"stop_conditions":["Scope or acceptance criteria change","Required access is unavailable","Budget exhausted","Unexpected confidential data"],"escalation_owner":"person:maker-example","extensions":{}}
+{
+  "schema_version": "0.3.0",
+  "id": "DELEGATION-001",
+  "revision": 1,
+  "record_mode": "fixture",
+  "mission": {"id": "MISSION-001", "revision": 1},
+  "policy": {"id": "POLICY-001", "revision": 1},
+  "agent": {"id": "agent:implementer-example", "kind": "agent"},
+  "objective": "Prepare a bounded candidate and focused tests for AC-01 and AC-02.",
+  "resources": ["repo:example/catalog"],
+  "environment": "sandbox",
+  "allowed_actions": ["source.read", "workspace.patch", "checks.run"],
+  "expected_outputs": [
+    "Reviewable patch",
+    "Test changes",
+    "Execution references or an explicit not_run result"
+  ],
+  "acceptance_criterion_ids": ["AC-01", "AC-02"],
+  "dependencies": [],
+  "budget": {"max_tool_calls": 20, "max_retries": 1, "max_runtime_seconds": 600},
+  "stop_conditions": [
+    "Scope or acceptance criteria change",
+    "Required access is unavailable",
+    "Budget exhausted",
+    "Unexpected confidential data"
+  ],
+  "escalation_owner": "person:maker-example",
+  "extensions": {}
+}

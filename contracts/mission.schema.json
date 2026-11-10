@@ -1,1 +1,140 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://example.invalid/moe/0.3.0/mission.schema.json","title":"Mission","type":"object","properties":{"schema_version":{"const":"0.3.0"},"id":{"$ref":"common.schema.json#/$defs/id"},"revision":{"type":"integer","minimum":1},"record_mode":{"enum":["fixture","operational"]},"title":{"type":"string","minLength":1},"status":{"enum":["draft","authorized","executing","awaiting_acceptance","accepted","delivered","observing","closed","blocked","cancelled","superseded"]},"maker":{"$ref":"common.schema.json#/$defs/actor"},"authorities":{"type":"object","properties":{"authorize":{"type":"string","minLength":1},"accept":{"type":"string","minLength":1},"release":{"type":"string","minLength":1},"exception":{"type":"string","minLength":1}},"required":["authorize","accept","release","exception"],"additionalProperties":false},"outcome":{"type":"object","properties":{"problem":{"type":"string","minLength":1},"intended_effect":{"type":"string","minLength":1},"baseline":{"type":"string","minLength":1}},"required":["problem","intended_effect","baseline"],"additionalProperties":false},"scope":{"type":"object","properties":{"resources":{"type":"array","items":{"type":"string","minLength":1},"minItems":1,"uniqueItems":true},"in_scope":{"type":"array","items":{"type":"string","minLength":1},"minItems":1},"out_of_scope":{"type":"array","items":{"type":"string","minLength":1},"minItems":1},"data_classification":{"type":"string","minLength":1}},"required":["resources","in_scope","out_of_scope","data_classification"],"additionalProperties":false},"risk":{"type":"object","properties":{"level":{"enum":["low","medium","high"]},"rationale":{"type":"string","minLength":1}},"required":["level","rationale"],"additionalProperties":false},"policy":{"$ref":"common.schema.json#/$defs/record_ref"},"acceptance_criteria":{"type":"array","items":{"$ref":"common.schema.json#/$defs/criterion"},"minItems":1},"verification":{"type":"object","properties":{"required_check_ids":{"type":"array","items":{"$ref":"common.schema.json#/$defs/id"},"minItems":1,"uniqueItems":true},"required_independence":{"type":"string","minLength":1}},"required":["required_check_ids","required_independence"],"additionalProperties":false},"assumptions":{"type":"array","items":{"type":"string","minLength":1},"minItems":0},"open_questions":{"type":"array","items":{"type":"string","minLength":1},"minItems":0},"observation":{"type":"object","properties":{"owner":{"type":"string","minLength":1},"measure":{"type":"string","minLength":1},"review_by":{"$ref":"common.schema.json#/$defs/timestamp"},"failure_response":{"type":"string","minLength":1}},"required":["owner","measure","review_by","failure_response"],"additionalProperties":false},"authorization_decision_ids":{"type":"array","items":{"$ref":"common.schema.json#/$defs/id"},"minItems":0},"extensions":{"type":"object"}},"required":["schema_version","id","revision","record_mode","title","status","maker","authorities","outcome","scope","risk","policy","acceptance_criteria","verification","assumptions","open_questions","observation","authorization_decision_ids","extensions"],"additionalProperties":false}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/moe/0.3.0/mission.schema.json",
+  "title": "Mission",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "0.3.0"},
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "record_mode": {"enum": ["fixture", "operational"]},
+    "title": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": [
+        "draft",
+        "authorized",
+        "executing",
+        "awaiting_acceptance",
+        "accepted",
+        "delivered",
+        "observing",
+        "closed",
+        "blocked",
+        "cancelled",
+        "superseded"
+      ]
+    },
+    "maker": {"$ref": "common.schema.json#/$defs/actor"},
+    "authorities": {
+      "type": "object",
+      "properties": {
+        "authorize": {"type": "string", "minLength": 1},
+        "accept": {"type": "string", "minLength": 1},
+        "release": {"type": "string", "minLength": 1},
+        "exception": {"type": "string", "minLength": 1}
+      },
+      "required": ["authorize", "accept", "release", "exception"],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "type": "object",
+      "properties": {
+        "problem": {"type": "string", "minLength": 1},
+        "intended_effect": {"type": "string", "minLength": 1},
+        "baseline": {"type": "string", "minLength": 1}
+      },
+      "required": ["problem", "intended_effect", "baseline"],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "in_scope": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "out_of_scope": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1
+        },
+        "data_classification": {"type": "string", "minLength": 1}
+      },
+      "required": ["resources", "in_scope", "out_of_scope", "data_classification"],
+      "additionalProperties": false
+    },
+    "risk": {
+      "type": "object",
+      "properties": {
+        "level": {"enum": ["low", "medium", "high"]},
+        "rationale": {"type": "string", "minLength": 1}
+      },
+      "required": ["level", "rationale"],
+      "additionalProperties": false
+    },
+    "policy": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {"$ref": "common.schema.json#/$defs/criterion"},
+      "minItems": 1
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "required_check_ids": {
+          "type": "array",
+          "items": {"$ref": "common.schema.json#/$defs/id"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_independence": {"type": "string", "minLength": 1}
+      },
+      "required": ["required_check_ids", "required_independence"],
+      "additionalProperties": false
+    },
+    "assumptions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 0},
+    "open_questions": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 0},
+    "observation": {
+      "type": "object",
+      "properties": {
+        "owner": {"type": "string", "minLength": 1},
+        "measure": {"type": "string", "minLength": 1},
+        "review_by": {"$ref": "common.schema.json#/$defs/timestamp"},
+        "failure_response": {"type": "string", "minLength": 1}
+      },
+      "required": ["owner", "measure", "review_by", "failure_response"],
+      "additionalProperties": false
+    },
+    "authorization_decision_ids": {
+      "type": "array",
+      "items": {"$ref": "common.schema.json#/$defs/id"},
+      "minItems": 0
+    },
+    "extensions": {"type": "object"}
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "record_mode",
+    "title",
+    "status",
+    "maker",
+    "authorities",
+    "outcome",
+    "scope",
+    "risk",
+    "policy",
+    "acceptance_criteria",
+    "verification",
+    "assumptions",
+    "open_questions",
+    "observation",
+    "authorization_decision_ids",
+    "extensions"
+  ],
+  "additionalProperties": false
+}

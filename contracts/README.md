@@ -34,6 +34,21 @@ passed and failed require a producer, run identifier, timestamp, artifact URI an
 
 The reference validator checks structure and selected cross-record invariants for one mission, policy, delegation, proof bundle and decision. It is not a multi-mission scheduler, policy engine, cryptographic verifier, production release gate, or conformance certifier. It does not authenticate identities, fetch artifacts, inspect source ACLs, detect all policy conflicts, evaluate current policy expiry or perform application tests. Operational integrations must do those things as appropriate.
 
+Actor kinds are taken as declared. Timestamps are checked for format but not compared with each other or with the current time, so an expired policy or exception is not detected. The validator reads one delegation and does not resolve its dependencies list.
+
 Format keywords such as date-time and uri are enforced only when the corresponding checker packages in requirements.txt are installed. The validator stops with an error when a format used by the schemas has no checker, rather than silently skipping it.
 
 Fixture records are explicitly synthetic and must never be promoted into operational acceptance. A fixture can pass schema and consistency checks while its required application checks remain not_run.
+
+## Known gaps
+
+The specification text and the reference schemas do not yet agree everywhere. The differences below are open issues for the [RFC process](../rfcs/README.md), not decisions. Until they are resolved, the specification states the intended semantics and the schemas state what the reference validator can check.
+
+| Topic | Specification | Reference schemas |
+| --- | --- | --- |
+| Policy subject | [Autonomy](../specification/autonomy.md) requires a policy to state its subject. | The autonomy schema has no subject field. The fixture names the agent only in the delegation. |
+| Concurrent work | [Autonomy](../specification/autonomy.md) requires budgets to bound concurrent work. | The shared budget bounds tool calls, retries and runtime only. |
+| Closure reason | [Lifecycle](../specification/lifecycle.md) requires a reason when the observation result is not applicable. | outcome_observation has no accompanying reason, and it sits on the proof bundle rather than a closure record. |
+| Patch compatibility | [Governance](../GOVERNANCE.md) says patch versions should not break record compatibility. | Each schema accepts schema_version 0.3.0 exactly, so a 0.3.1 record would be rejected. |
+| Requirement identifiers | MUST statements appear throughout the specification. | Only C01-C10 have identifiers, so the others cannot be cited individually in a declaration. |
+| Template items | The [templates](../templates/mission.md) name an outcome owner, beneficiary, concurrency limit and delegation-depth limit. | The schemas do not model these items. |

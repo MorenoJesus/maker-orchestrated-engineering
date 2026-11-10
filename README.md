@@ -37,22 +37,26 @@ Choose a [lifecycle profile](profiles/README.md). Map local roles, authority, ev
 
 Requires Python 3.10 or later and the packages in `requirements.txt`.
 
-```powershell
-py -m pip install -r requirements.txt
-py scripts/validate.py
-py -m unittest discover -s tests -v
+```sh
+python -m pip install -r requirements.txt
+python scripts/validate.py
+python -m unittest discover -s tests -v
 ```
+
+On Windows, `py` can replace `python`. Where only `python3` is on the path, use that.
 
 The validator checks schema structure, cross-record links, and selected policy invariants. It does not authenticate approvers, execute security controls, certify conformance, or prove a software change correct. All example records are synthetic fixtures, not production evidence.
 
+A [repository workflow](.github/workflows/validate.yml) is configured to run the same commands and the slide build on pull requests. A passing run shows that the repository is internally consistent, nothing more.
+
 ## Build the presentation
 
-```powershell
-py scripts/build_slides.py
+```sh
+python scripts/build_slides.py
 ```
 
-This creates `dist/MOE_Framework_v0.3.pptx` from editable source. The source, slide content, and notes are in this repository. Generated release files are not the normative specification.
+This creates `dist/MOE_Framework_v0.3.pptx` and `dist/MOE_Speaker_Notes.md` from editable source. The source, slide content, and notes are in this repository. Generated release files are not the normative specification.
 
 ## Status and decisions still open
 
-The repository owner must approve a reuse license before this project claims to be open source; see [license status](LICENSE-STATUS.md). Thresholds, adoption targets, and maturity labels in this draft are proposals, not external standards. No industry endorsement or certification is claimed. See [roadmap](ROADMAP.md) and [RFC process](rfcs/README.md).
+The repository owner must approve a reuse license before this project claims to be open source; see [license status](LICENSE-STATUS.md). Thresholds, adoption targets, and maturity labels in this draft are proposals, not external standards. No industry endorsement or certification is claimed. Places where the specification text and the reference schemas do not yet agree are listed under [known gaps](contracts/README.md#known-gaps). See [roadmap](ROADMAP.md) and [RFC process](rfcs/README.md).
