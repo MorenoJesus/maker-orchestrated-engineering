@@ -14,7 +14,17 @@ This project does not operate a certification program. A schema-valid record, su
 
 ## Required declaration
 
-A declaration MUST include the framework version; organization or team scope; products, environments, and dates assessed; lifecycle and governance profile versions; assessor and accountable owner; C01-C10 evidence references; exceptions; known gaps; and reassessment date or trigger.
+A declaration MUST include all of the following:
+
+- framework version
+- organization or team scope
+- products, environments, and dates assessed
+- lifecycle and governance profile versions
+- assessor and accountable owner
+- C01-C10 evidence references
+- exceptions
+- known gaps
+- reassessment date or trigger
 
 All core requirements are applicable to an implementation claiming core conformance. Individual checks inside a mission may be not applicable with a justified policy decision. A team cannot declare a core requirement not applicable simply to avoid implementing it.
 

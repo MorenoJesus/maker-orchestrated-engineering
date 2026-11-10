@@ -19,6 +19,7 @@ The license decision, reference tooling corrections and presentation polish; no 
 - Reformatted the schemas, example records and slide source from single-line JSON to indented JSON. The parsed content is unchanged, apart from the slide wording below.
 - Presentation: the deck now names Calibri instead of Inter, which rendered through substitution wherever Inter was not installed. The loop slide shows the full cycle, the architecture labels are vertically centred, and the seventh principle uses the manifesto's wording.
 - Documented the known gaps between the specification text and the reference schemas, further validator limits, and an optional live demonstration. README commands now use `python`.
+- Rewrote five long enumeration sentences as lists: one each in `ROADMAP.md`, `docs/overview.md`, `rfcs/README.md`, `specification/conformance.md` and `templates/delegation.md`. Every listed item is unchanged. In `specification/conformance.md`, MUST still applies to all nine declaration items.
 
 ## Unreleased - ECS integration into the 0.3.0 working draft
 

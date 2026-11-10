@@ -4,7 +4,17 @@
 
 ## Foundation: 0.3.0 working draft
 
-Core requirements and manifesto; lifecycle and accountability model; five logical contract types; reference schemas and synthetic fixtures; validation and negative tests; four lifecycle profiles; adoption and measurement guidance; reference architecture and threat model; presentation source and speaker notes.
+The foundation contains:
+
+- core requirements and manifesto
+- lifecycle and accountability model
+- five logical contract types
+- reference schemas and synthetic fixtures
+- validation and negative tests
+- four lifecycle profiles
+- adoption and measurement guidance
+- reference architecture and threat model
+- presentation source and speaker notes
 
 ## Next: validate the design
 

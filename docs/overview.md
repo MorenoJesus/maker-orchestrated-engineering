@@ -30,7 +30,17 @@ A profile may strengthen core requirements. It must not silently weaken them and
 
 ## Minimal useful implementation
 
-One accountable maker, one approved task with explicit acceptance conditions, a bounded execution environment, an enforceable permission policy, a reviewable change, reliable verification results, and a recorded acceptance decision are enough to begin. A distributed agent platform is optional.
+These seven elements are enough to begin:
+
+- one accountable maker
+- one approved task with explicit acceptance conditions
+- a bounded execution environment
+- an enforceable permission policy
+- a reviewable change
+- reliable verification results
+- a recorded acceptance decision
+
+A distributed agent platform is optional.
 
 The five contract types are logical records. For a low-risk documentation change, their contents can fit in one issue and its linked review. For a consequential system change, the same semantics can span versioned records and controlled evidence storage.
 
