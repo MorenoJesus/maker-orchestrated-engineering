@@ -8,7 +8,7 @@ Core requirements and manifesto; lifecycle and accountability model; five logica
 
 ## Next: validate the design
 
-Owner reviews license and governance. Review the core with engineers, security reviewers, product owners, and operators from more than one context. Run a bounded pilot and record failures as well as benefits. Test whether the records are useful without unnecessary paperwork. Refine schema semantics and portability based on findings. Resolve the [known gaps](contracts/README.md#known-gaps) between the specification and the reference schemas through RFCs.
+Owner reviews governance and contribution terms. Review the core with engineers, security reviewers, product owners, and operators from more than one context. Run a bounded pilot and record failures as well as benefits. Test whether the records are useful without unnecessary paperwork. Refine schema semantics and portability based on findings. Resolve the [known gaps](contracts/README.md#known-gaps) between the specification and the reference schemas through RFCs.
 
 ## Then: implementation evidence
 

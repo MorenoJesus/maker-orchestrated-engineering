@@ -22,4 +22,4 @@ Prefer implementable requirements, clear uncertainty, small records, and evidenc
 
 ## Unresolved project decisions
 
-The owner must choose a reuse license, confirm a private security-reporting route, approve initial governance, and decide when the working draft is ready for a tagged release. These are visible decisions, not assumed approvals.
+The owner selected the Apache License, Version 2.0 on 2026-11-10; see [license status](LICENSE-STATUS.md). The owner must still confirm a private security-reporting route, approve initial governance, and decide when the working draft is ready for a tagged release. These are visible decisions, not assumed approvals.

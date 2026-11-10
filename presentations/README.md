@@ -14,7 +14,7 @@ The deck uses Calibri, which ships with common office suites or is replaced ther
 
 Generated PowerPoint and PDF files are convenience artifacts, not normative specifications. Review the core documents if a summary omits detail. PDF exports can be produced with an approved office-suite conversion workflow. This repository does not require one office suite or hosted presentation platform.
 
-Generated files are written to `dist/`, which is not version-controlled. No license, release approval or measured productivity benefit is implied by the presentation.
+Generated files are written to `dist/`, which is not version-controlled. The presentation source is covered by the repository [license](../LICENSE). No release approval or measured productivity benefit is implied by the presentation.
 
 ## Optional live demonstration
 

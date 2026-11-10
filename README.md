@@ -2,7 +2,7 @@
 
 **Human Vision. Intelligent Execution. Verified Outcomes.**
 
-**Version:** 0.3.0 | **Status:** public working draft | **Date:** 2026-11-06
+**Version:** 0.3.0 | **Status:** public working draft | **Date:** 2026-11-06 | **License:** Apache-2.0
 
 Maker-Orchestrated Engineering is a vendor-neutral, lifecycle-adaptable framework for accountable collaboration between people and intelligent agents. Human makers direct the work. Agents execute bounded tasks. Independently inspectable evidence supports acceptance. Organizational policy controls authority.
 
@@ -59,4 +59,4 @@ This creates `dist/MOE_Framework_v0.3.pptx` and `dist/MOE_Speaker_Notes.md` from
 
 ## Status and decisions still open
 
-The repository owner must approve a reuse license before this project claims to be open source; see [license status](LICENSE-STATUS.md). Thresholds, adoption targets, and maturity labels in this draft are proposals, not external standards. No industry endorsement or certification is claimed. Places where the specification text and the reference schemas do not yet agree are listed under [known gaps](contracts/README.md#known-gaps). See [roadmap](ROADMAP.md) and [RFC process](rfcs/README.md).
+MOE is licensed under the [Apache License, Version 2.0](LICENSE); see [license status](LICENSE-STATUS.md) for its scope. Governance approval, a private security-reporting route, the pilot design and a tagged release are still open owner decisions. Thresholds, adoption targets, and maturity labels in this draft are proposals, not external standards. No industry endorsement or certification is claimed. Places where the specification text and the reference schemas do not yet agree are listed under [known gaps](contracts/README.md#known-gaps). See [roadmap](ROADMAP.md) and [RFC process](rfcs/README.md).

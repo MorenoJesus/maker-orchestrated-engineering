@@ -31,4 +31,4 @@ No. Version 0.3.0 is a proposed working draft. Pilots must test whether it impro
 Yes. Any style that preserves intent, observable acceptance, explicit uncertainty, and traceability can fit. No separate writing standard is mandatory.
 
 ## Can we reuse the public repository today?
-The owner still needs to select and approve a license. Public visibility alone is not the project's declaration of an open-source license. See the license status document.
+Yes, under the Apache License, Version 2.0. See the [license](../LICENSE) and the [license status](../LICENSE-STATUS.md) document. The license does not grant trademark rights, relicense linked third-party sources, or say anything about whether your implementation conforms.

@@ -1,6 +1,6 @@
 # Contributing
 
-This is a working-draft framework. The owner has not yet approved a reuse license or contributor terms; resolve that before broad external code contributions or redistribution. Suggestions and review feedback can still identify issues without transferring proprietary material.
+This is a working-draft framework, licensed under the [Apache License, Version 2.0](LICENSE). Under section 5 of that license, a contribution submitted for inclusion is provided under the same terms unless you state otherwise. The owner has not adopted a separate contributor agreement or sign-off requirement. Contribute only material you have the right to submit.
 
 ## A useful contribution
 

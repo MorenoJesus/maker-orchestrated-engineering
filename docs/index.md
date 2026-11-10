@@ -48,6 +48,7 @@ MOE 0.3.0 working draft. Core requirements are normative within the proposal; pr
 - [GOVERNANCE.md](../GOVERNANCE.md)
 - [CONTRIBUTING.md](../CONTRIBUTING.md)
 - [SECURITY.md](../SECURITY.md)
+- [LICENSE](../LICENSE)
 - [LICENSE-STATUS.md](../LICENSE-STATUS.md)
 - [ROADMAP.md](../ROADMAP.md)
 - [CHANGELOG.md](../CHANGELOG.md)

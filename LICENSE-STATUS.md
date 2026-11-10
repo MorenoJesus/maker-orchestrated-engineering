@@ -1,11 +1,15 @@
 # License status
 
-**Decision pending: repository owner approval required.**
+**Decision recorded: Apache License, Version 2.0.**
 
-No project reuse license is selected in this foundation. Public visibility is not being presented as an open-source license grant. The files do not claim to authorize redistribution, adaptation, or commercial adoption under an approved license.
+The repository owner selected the Apache License, Version 2.0 for this project on 2026-11-10. The full text is in [LICENSE](LICENSE). The selection covers the repository's content as a whole: documentation, specification text, schemas, examples, templates, presentation source and executable code.
 
-Before soliciting broad adoption, the owner should choose and add appropriate license text, clarify the treatment of documentation, schemas, examples, and executable code, and update contribution terms. A single permissive license or separate documentation/code licenses are possible choices; this draft makes no choice on the owner's behalf.
+Copyright 2026 the MOE authors. Licensed under the Apache License, Version 2.0. You may not use these files except in compliance with the License. Unless required by applicable law or agreed to in writing, the content is distributed on an "AS IS" basis, without warranties or conditions of any kind.
 
-Third-party sources are linked and briefly discussed, not relicensed. Names and trademarks belong to their respective holders. References do not imply endorsement.
+## What the license does not do
 
-See [RFC 0001](rfcs/0001-foundation-decisions.md) for the pending decision record.
+The license does not grant rights in names or trademarks, and it does not relicense third-party sources. Those sources are linked and briefly discussed only. Names and trademarks belong to their respective holders, and references do not imply endorsement. A license is not a certification, a conformance claim or evidence that the framework works in practice.
+
+## Still open
+
+Section 5 of the license applies its terms to contributions submitted for inclusion unless the contributor states otherwise. The owner has not adopted a separate contributor agreement or sign-off requirement. See [RFC 0001](rfcs/0001-foundation-decisions.md) for the decision record and the remaining owner decisions.

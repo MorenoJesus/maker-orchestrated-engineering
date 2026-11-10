@@ -254,8 +254,8 @@
       ["Then", "Demonstrate adapters and failure controls"],
       ["Before 1.0", "Stabilize semantics, review evidence and document limits"]
     ],
-    "subtitle": "License and governance approval are still owner decisions. No adoption results are claimed.",
-    "notes": "The repository includes core documents, schemas, synthetic examples, templates, lifecycle profiles, implementation guidance, validation and presentation source. It does not include a production orchestration platform. Select a reuse license before describing the project as open source. Seek feedback from engineering, product, security and operations across more than one organizational context."
+    "subtitle": "Licensed under Apache-2.0. Governance approval is still an owner decision. No adoption results are claimed.",
+    "notes": "The repository includes core documents, schemas, synthetic examples, templates, lifecycle profiles, implementation guidance, validation and presentation source. It does not include a production orchestration platform. The project is licensed under the Apache License, Version 2.0. Seek feedback from engineering, product, security and operations across more than one organizational context."
   },
   {
     "layout": "closing",
