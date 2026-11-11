@@ -1,0 +1,98 @@
+{
+  "manifest_version": 1,
+  "name": "engineering-clarity",
+  "version": "1.0.0",
+  "source_repository": "https://github.com/MorenoJesus/engineering-clarity-standard",
+  "source_commit": "871dbf7030cf18be6312fb0fca00b86d440f7a98",
+  "license": "MIT",
+  "canonical_skill_root": ".agents/skills/engineering-clarity",
+  "mirror_roots": [
+    ".claude/skills/engineering-clarity"
+  ],
+  "files": [
+    {
+      "path": ".agents/skills/engineering-clarity/LICENSE",
+      "upstream_path": "LICENSE",
+      "git_blob_sha": "f6a6869464f8320655a6b30d24312002798052af",
+      "sha256": "bbecbf65ff7300a8dde76397a3b32b9386ca6b22d7d526c9122167e79f4a704c"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/SKILL.md",
+      "upstream_path": ".agents/skills/engineering-clarity/SKILL.md",
+      "git_blob_sha": "20cd086ecad296753765a7d46b9b66005dd4dd4d",
+      "sha256": "afc3bf41783e0562881ceec405c53544ecc8a7dae1443eabd3bcd1835582e0e2"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/adr.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/adr.md",
+      "git_blob_sha": "f22c49fcb19283179356a36c429d2bd4d0cdaa06",
+      "sha256": "c827c939f10ce0d7f4cd6bf79dead8c9c9b8366df53e1718f308a72327b31246"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/api-contract.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/api-contract.md",
+      "git_blob_sha": "87a0ecff63acf8b5ec4bd80bc884fea2554f0d05",
+      "sha256": "36893bb46d77eccddce372b444e2d35ba5002ca16d8fe6c47f72b515a707c312"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/implementation-plan.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/implementation-plan.md",
+      "git_blob_sha": "7123285c26ee836e48fef5fe584ccab854f64f01",
+      "sha256": "0c1e75d98b9ef0618d731a952bad8243c1617b4bfe998e3823d805a36791543a"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/pull-request.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/pull-request.md",
+      "git_blob_sha": "97ed10706f9c424c124275fafa3b974262a7d2aa",
+      "sha256": "a331c8f9c3d2f1455bdee26dd82793619d96f018418873f608f77614c2e87484"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/runbook.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/runbook.md",
+      "git_blob_sha": "7ebe14b81d89bda99e67e03162383ee3b75ef2e1",
+      "sha256": "f2655724a403e8517cc63d14b9ecded6495d9b55b71846e2f69f5fe2892ad00b"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/assets/user-story.md",
+      "upstream_path": ".agents/skills/engineering-clarity/assets/user-story.md",
+      "git_blob_sha": "d85c2023fcf613344cd05b74c6e7437a21a71a6b",
+      "sha256": "400e3267f053928574e4321a5ba2f837a9e540aecd463ad560c506d0f784d033"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/examples/before-after.md",
+      "upstream_path": ".agents/skills/engineering-clarity/examples/before-after.md",
+      "git_blob_sha": "595ef12860148fc48be36b684e013c86fead42a1",
+      "sha256": "e989d0dad3618847d93f3f47176b7bc94ae91665c50f215ee0443667f9167160"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/references/artifact-rules.md",
+      "upstream_path": ".agents/skills/engineering-clarity/references/artifact-rules.md",
+      "git_blob_sha": "88c5bd89eabfb0c310fba0572c5a4e6f5032f5f6",
+      "sha256": "447126178690b7d0ff493a6e871fe7722f8d5a024c47137eafc55c00a13a3b89"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/references/glossary.md",
+      "upstream_path": ".agents/skills/engineering-clarity/references/glossary.md",
+      "git_blob_sha": "adae6be418e9dd42efc1f99b9d8abf870bfd04af",
+      "sha256": "9b96df665d817a30637ecd7f803acde939e203a874a052321023905297d58ca7"
+    },
+    {
+      "path": ".agents/skills/engineering-clarity/references/standard.md",
+      "upstream_path": ".agents/skills/engineering-clarity/references/standard.md",
+      "git_blob_sha": "6ad8ccfe67e2338aa49bde072ee719a7f82c5560",
+      "sha256": "6d7a95c9d5f4711de117945496a6ca87c67910e04097473018117510efb0cb45"
+    },
+    {
+      "path": "third_party/ecs/LICENSE",
+      "upstream_path": "LICENSE",
+      "git_blob_sha": "f6a6869464f8320655a6b30d24312002798052af",
+      "sha256": "bbecbf65ff7300a8dde76397a3b32b9386ca6b22d7d526c9122167e79f4a704c"
+    },
+    {
+      "path": "third_party/ecs/check_clarity.py",
+      "upstream_path": "scripts/check_clarity.py",
+      "git_blob_sha": "cb49ffcc7c2ac39e26c05367b25cf0a44d435d20",
+      "sha256": "1aa64774c592ef9158f989950bd3cefc42884e236d1bd8888696e7b8c16be80e"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "record_type": "ecs_runtime_evaluation",
+  "status": "not_run",
+  "repository_commit": null,
+  "ecs_source_commit": "871dbf7030cf18be6312fb0fca00b86d440f7a98",
+  "runtime": null,
+  "runtime_version": null,
+  "model": null,
+  "configuration": null,
+  "executed_at": null,
+  "reviewer": null,
+  "activation_evidence": null,
+  "case_results": [],
+  "limitations": [
+    "Template only; no runtime execution or behavioral results are asserted."
+  ]
+}

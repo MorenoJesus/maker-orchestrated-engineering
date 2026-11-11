@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/moe/0.3.0/proof-bundle.schema.json",
+  "title": "Proof Bundle",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": "0.3.0"},
+    "id": {"$ref": "common.schema.json#/$defs/id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "record_mode": {"enum": ["fixture", "operational"]},
+    "mission": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "policy": {"$ref": "common.schema.json#/$defs/record_ref"},
+    "candidate": {"$ref": "common.schema.json#/$defs/candidate"},
+    "assessment": {"enum": ["incomplete", "ready_for_acceptance"]},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"$ref": "common.schema.json#/$defs/id"},
+          "criterion_ids": {
+            "type": "array",
+            "items": {"$ref": "common.schema.json#/$defs/id"},
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "required": {"type": "boolean"},
+          "outcome": {"enum": ["passed", "failed", "not_run", "unknown", "not_applicable"]},
+          "producer": {"$ref": "common.schema.json#/$defs/actor"},
+          "run_id": {"type": "string", "minLength": 1},
+          "observed_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+          "artifact_uri": {"type": "string", "format": "uri"},
+          "artifact_digest": {"$ref": "common.schema.json#/$defs/digest"},
+          "reason": {"type": "string", "minLength": 1},
+          "decision_id": {"$ref": "common.schema.json#/$defs/id"}
+        },
+        "required": ["id", "criterion_ids", "required", "outcome", "producer", "reason"],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "outcome": {"enum": ["passed", "failed"]}
+              }
+            },
+            "then": {"required": ["run_id", "observed_at", "artifact_uri", "artifact_digest"]}
+          },
+          {
+            "if": {
+              "properties": {"outcome": {"const": "not_applicable"}}
+            },
+            "then": {"required": ["decision_id"]}
+          }
+        ]
+      },
+      "minItems": 1
+    },
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 0},
+    "generated_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "outcome_observation": {
+      "enum": ["not_yet_observed", "achieved", "not_achieved", "unknown", "not_applicable"]
+    },
+    "extensions": {"type": "object"}
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "revision",
+    "record_mode",
+    "mission",
+    "policy",
+    "candidate",
+    "assessment",
+    "checks",
+    "limitations",
+    "generated_at",
+    "outcome_observation",
+    "extensions"
+  ],
+  "additionalProperties": false
+}

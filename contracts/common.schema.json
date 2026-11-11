@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/moe/0.3.0/common.schema.json",
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{1,100}$"},
+    "record_ref": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/id"},
+        "revision": {"type": "integer", "minimum": 1}
+      },
+      "required": ["id", "revision"],
+      "additionalProperties": false
+    },
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "actor": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["human", "service", "agent"]}
+      },
+      "required": ["id", "kind"],
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "max_tool_calls": {"type": "integer", "minimum": 1},
+        "max_retries": {"type": "integer", "minimum": 0},
+        "max_runtime_seconds": {"type": "integer", "minimum": 1}
+      },
+      "required": ["max_tool_calls", "max_retries", "max_runtime_seconds"],
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/id"},
+        "artifact_digest": {"$ref": "common.schema.json#/$defs/digest"},
+        "source_revision": {"type": "string", "minLength": 1},
+        "target_revision": {"type": "string", "minLength": 1},
+        "environment": {"type": "string", "minLength": 1},
+        "inputs_digest": {"$ref": "common.schema.json#/$defs/digest"}
+      },
+      "required": [
+        "id",
+        "artifact_digest",
+        "source_revision",
+        "target_revision",
+        "environment",
+        "inputs_digest"
+      ],
+      "additionalProperties": false
+    },
+    "criterion": {
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/id"},
+        "description": {"type": "string", "minLength": 1},
+        "verification_method": {"type": "string", "minLength": 1}
+      },
+      "required": ["id", "description", "verification_method"],
+      "additionalProperties": false
+    }
+  }
+}

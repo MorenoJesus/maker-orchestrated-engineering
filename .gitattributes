@@ -1,0 +1,4 @@
+# Preserve the exact LF bytes of the pinned ECS package on Windows.
+/.agents/skills/engineering-clarity/** text eol=lf
+/.claude/skills/engineering-clarity/** text eol=lf
+/third_party/ecs/** text eol=lf
